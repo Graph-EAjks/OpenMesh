@@ -53,6 +53,13 @@
 #include <vector>
 #include <algorithm>
 
+// Silence noisy warnings. TODO: actually avoid the deprecated behaviour.
+#ifdef __GNUC__
+#  pragma GCC diagnostic push
+#  pragma GCC diagnostic ignored "-Wdeprecated-enum-enum-conversion"
+#endif
+
+
 //== NAMESPACES ===============================================================
 
 namespace OpenMesh {
@@ -788,5 +795,10 @@ private:
 //=============================================================================
 } // namespace OpenMesh
 //=============================================================================
+
+#ifdef __GNUC__
+#  pragma GCC diagnostic pop
+#endif
+
 #endif // OPENMESH_ATTRIBKERNEL_HH defined
 //=============================================================================
