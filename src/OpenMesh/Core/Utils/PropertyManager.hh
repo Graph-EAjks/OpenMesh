@@ -390,7 +390,6 @@ class PropertyManager {
                 const PROP_VALUE &init_value) {
             const bool exists = propertyExists(mesh, propname);
             PropertyManager pm(mesh, propname, exists);
-            pm.retain();
             if (!exists)
                 pm.set_range(begin, end, init_value);
             return std::move(pm);
