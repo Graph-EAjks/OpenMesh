@@ -51,6 +51,23 @@
 #  include <cmath>
 #  include <cstdio>
 #endif
+// ---windows 32 --------------------------------------------------------------
+#if defined(WIN32) && (defined(_MSC_VER) || defined(__INTEL_COMPILER) || defined (__MINGW32__) )
+#  include <windows.h>
+// ---posix time --------------------------------------------------------------
+#elif defined(__GNUC__) && defined(__POSIX__) 
+#  include <time.h>
+// ---gettimeofday ------------------------------------------------------------
+#elif (defined(__GNUC__) && !defined(__FreeBSD__) || (defined(__INTEL_COMPILER) && !defined(WIN32))) && !defined(__MINGW32__)
+
+#  include <sys/time.h>
+#  include <sys/resource.h>
+#  include <unistd.h>
+// ---standard implementation -------------------------------------------------
+#else 
+#  include <time.h>
+#endif
+
 #include "Timer.hh"
 // ----------------------------------------------------------------------------
 
@@ -84,10 +101,6 @@ public:
 
 // ------------------------------------------------------------- windows 32 ----
 #if defined(WIN32) && (defined(_MSC_VER) || defined(__INTEL_COMPILER) || defined (__MINGW32__) )
-
-#ifndef DOXY_IGNORE_THIS
-#include <windows.h>
-#endif
 
 class TimerImplWin32 : public TimerImpl
 {
@@ -149,10 +162,6 @@ double TimerImplWin32::seconds(void) const
 // ------------------------------------------------------------- posix time ----
 #elif defined(__GNUC__) && defined(__POSIX__) 
 
-#ifndef DOXY_IGNORE_THIS
-#  include <time.h>
-#endif
-
 template <clockid_t N>
 class TimerImplPosix : public TimerImpl
 {
@@ -186,10 +195,6 @@ protected:
 
 // ----------------------------------------------------------- gettimeofday ----
 #elif (defined(__GNUC__) && !defined(__FreeBSD__) || (defined(__INTEL_COMPILER) && !defined(WIN32))) && !defined(__MINGW32__)
-
-#  include <sys/time.h>
-#  include <sys/resource.h>
-#  include <unistd.h>
 
 class TimerImplGToD: public TimerImpl
 {
@@ -225,8 +230,6 @@ private:
 
 
 #else // ---------------------------------------- standard implementation ----
-
-#include <time.h>
 
 static const unsigned long clockticks = CLOCKS_PER_SEC;
 
