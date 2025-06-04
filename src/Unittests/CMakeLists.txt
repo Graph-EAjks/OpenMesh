@@ -185,4 +185,13 @@ if (OPENMESH_BUILD_UNIT_TESTS)
   add_test(NAME AllTestsIn_OpenMesh_tests WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/Unittests" COMMAND "${CMAKE_BINARY_DIR}/Unittests/unittests")
   add_test(NAME AllTestsIn_OpenMesh_tests_with_minimal_vector WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/Unittests" COMMAND "${CMAKE_BINARY_DIR}/Unittests/unittests_customvec")
   add_test(NAME AllTestsIn_OpenMesh_tests_with_double_vector WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/Unittests" COMMAND "${CMAKE_BINARY_DIR}/Unittests/unittests_doublevec")
+
+  # Make sure the tests are run serially (running them in parallel can cause issues with file I/O)
+  set_tests_properties(
+    AllTestsIn_OpenMesh_tests
+    AllTestsIn_OpenMesh_tests_with_minimal_vector
+    AllTestsIn_OpenMesh_tests_with_double_vector
+    PROPERTIES RESOURCE_LOCK "I/O"
+  )
+
 endif()
