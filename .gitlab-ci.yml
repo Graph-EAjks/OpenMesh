@@ -37,10 +37,10 @@ cppcheck:
 # Type:       Build: debug
 # OS:         Linux
 # Compiler:   gcc
-# Language:   cpp11
-# QT Version: qt6.1.2
+# Language:   cpp17
+# QT Version: qt6.7.1
 
-build-debug-gcc-cpp11-qt6.1.2:
+build-debug-gcc-cpp17-qt6.7.1:
   stage: build
   script: "CI/ci-linux-build.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -48,22 +48,22 @@ build-debug-gcc-cpp11-qt6.1.2:
     - Linux
   variables:
     COMPILER: "gcc"
-    LANGUAGE: "cpp11"
+    LANGUAGE: "cpp17"
     BUILD_TYPE: "debug"
-    QTVERSION: "qt6.1.2"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
   artifacts:
     paths:
-    - build-gcc-cpp11-qt6.1.2-debug-vectorchecks/
+    - build-gcc-cpp17-qt6.7.1-debug-vectorchecks/
 
 #-----------  Job Informations:
 # Type:       Test: debug
 # OS:         Linux
 # Compiler:   gcc
-# Language:   cpp11
+# Language:   cpp17
 
-test-debug-gcc-cpp11-qt6.1.2:
+test-debug-gcc-cpp17-qt6.7.1:
   stage: test
   script: "CI/ci-linux-test.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -72,29 +72,29 @@ test-debug-gcc-cpp11-qt6.1.2:
     - MultiThreads
   variables:
     COMPILER: "gcc"
-    LANGUAGE: "cpp11"
+    LANGUAGE: "cpp17"
     BUILD_TYPE: "debug"
-    QTVERSION: "qt6.1.2"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
-  dependencies: [build-debug-gcc-cpp11-qt6.1.2]
-  needs: [build-debug-gcc-cpp11-qt6.1.2]
+  dependencies: [build-debug-gcc-cpp17-qt6.7.1]
+  needs: [build-debug-gcc-cpp17-qt6.7.1]
   artifacts:
     reports:
       junit:
-        - build-gcc-cpp11-qt6.1.2-debug-vectorchecks/Unittests/report.xml
-        - build-gcc-cpp11-qt6.1.2-debug-vectorchecks/Unittests/report-customvec.xml
-        - build-gcc-cpp11-qt6.1.2-debug-vectorchecks/Unittests/report-doublevec.xml
+        - build-gcc-cpp17-qt6.7.1-debug-vectorchecks/Unittests/report.xml
+        - build-gcc-cpp17-qt6.7.1-debug-vectorchecks/Unittests/report-customvec.xml
+        - build-gcc-cpp17-qt6.7.1-debug-vectorchecks/Unittests/report-doublevec.xml
 
 
 #-----------  Job Informations:
 # Type:       Build: release
 # OS:         Linux
 # Compiler:   gcc
-# Language:   cpp11
-# QT Version: qt6.1.2
+# Language:   cpp17
+# QT Version: qt6.7.1
 
-build-release-gcc-cpp11-qt6.1.2:
+build-release-gcc-cpp17-qt6.7.1:
   stage: build
   script: "CI/ci-linux-build.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -102,22 +102,22 @@ build-release-gcc-cpp11-qt6.1.2:
     - Linux
   variables:
     COMPILER: "gcc"
-    LANGUAGE: "cpp11"
+    LANGUAGE: "cpp17"
     BUILD_TYPE: "release"
-    QTVERSION: "qt6.1.2"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
   artifacts:
     paths:
-    - build-gcc-cpp11-qt6.1.2-release-vectorchecks/
+    - build-gcc-cpp17-qt6.7.1-release-vectorchecks/
 
 #-----------  Job Informations:
 # Type:       Test: release
 # OS:         Linux
 # Compiler:   gcc
-# Language:   cpp11
+# Language:   cpp17
 
-test-release-gcc-cpp11-qt6.1.2:
+test-release-gcc-cpp17-qt6.7.1:
   stage: test
   script: "CI/ci-linux-test.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -126,19 +126,19 @@ test-release-gcc-cpp11-qt6.1.2:
     - MultiThreads
   variables:
     COMPILER: "gcc"
-    LANGUAGE: "cpp11"
+    LANGUAGE: "cpp17"
     BUILD_TYPE: "release"
-    QTVERSION: "qt6.1.2"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
-  dependencies: [build-release-gcc-cpp11-qt6.1.2]
-  needs: [build-release-gcc-cpp11-qt6.1.2]
+  dependencies: [build-release-gcc-cpp17-qt6.7.1]
+  needs: [build-release-gcc-cpp17-qt6.7.1]
   artifacts:
     reports:
       junit:
-        - build-gcc-cpp11-qt6.1.2-release-vectorchecks/Unittests/report.xml
-        - build-gcc-cpp11-qt6.1.2-release-vectorchecks/Unittests/report-customvec.xml
-        - build-gcc-cpp11-qt6.1.2-release-vectorchecks/Unittests/report-doublevec.xml
+        - build-gcc-cpp17-qt6.7.1-release-vectorchecks/Unittests/report.xml
+        - build-gcc-cpp17-qt6.7.1-release-vectorchecks/Unittests/report-customvec.xml
+        - build-gcc-cpp17-qt6.7.1-release-vectorchecks/Unittests/report-doublevec.xml
 
 
 #-----------  Job Informations:
@@ -255,9 +255,9 @@ test-release-clang-cpp17-qt6.7.1:
 # OS:         Linux
 # Compiler:   gcc
 # Language:   cpp14
-# QT Version: qt5.15.1
+# QT Version: qt6.7.1
 
-build-debug-gcc-cpp14-qt5.15.1:
+build-debug-gcc-cpp14-qt6.7.1:
   stage: build
   script: "CI/ci-linux-build.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -267,12 +267,12 @@ build-debug-gcc-cpp14-qt5.15.1:
     COMPILER: "gcc"
     LANGUAGE: "cpp14"
     BUILD_TYPE: "debug"
-    QTVERSION: "qt5.15.1"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
   artifacts:
     paths:
-    - build-gcc-cpp14-qt5.15.1-debug-vectorchecks/
+    - build-gcc-cpp14-qt6.7.1-debug-vectorchecks/
 
 #-----------  Job Informations:
 # Type:       Test: debug
@@ -280,7 +280,7 @@ build-debug-gcc-cpp14-qt5.15.1:
 # Compiler:   gcc
 # Language:   cpp14
 
-test-debug-gcc-cpp14-qt5.15.1:
+test-debug-gcc-cpp14-qt6.7.1:
   stage: test
   script: "CI/ci-linux-test.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -291,17 +291,17 @@ test-debug-gcc-cpp14-qt5.15.1:
     COMPILER: "gcc"
     LANGUAGE: "cpp14"
     BUILD_TYPE: "debug"
-    QTVERSION: "qt5.15.1"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
-  dependencies: [build-debug-gcc-cpp14-qt5.15.1]
-  needs: [build-debug-gcc-cpp14-qt5.15.1]
+  dependencies: [build-debug-gcc-cpp14-qt6.7.1]
+  needs: [build-debug-gcc-cpp14-qt6.7.1]
   artifacts:
     reports:
       junit:
-        - build-gcc-cpp14-qt5.15.1-debug-vectorchecks/Unittests/report.xml
-        - build-gcc-cpp14-qt5.15.1-debug-vectorchecks/Unittests/report-customvec.xml
-        - build-gcc-cpp14-qt5.15.1-debug-vectorchecks/Unittests/report-doublevec.xml
+        - build-gcc-cpp14-qt6.7.1-debug-vectorchecks/Unittests/report.xml
+        - build-gcc-cpp14-qt6.7.1-debug-vectorchecks/Unittests/report-customvec.xml
+        - build-gcc-cpp14-qt6.7.1-debug-vectorchecks/Unittests/report-doublevec.xml
 
 
 #-----------  Job Informations:
@@ -309,9 +309,9 @@ test-debug-gcc-cpp14-qt5.15.1:
 # OS:         Linux
 # Compiler:   gcc
 # Language:   cpp14
-# QT Version: qt5.15.1
+# QT Version: qt6.7.1
 
-build-release-gcc-cpp14-qt5.15.1:
+build-release-gcc-cpp14-qt6.7.1:
   stage: build
   script: "CI/ci-linux-build.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -321,12 +321,12 @@ build-release-gcc-cpp14-qt5.15.1:
     COMPILER: "gcc"
     LANGUAGE: "cpp14"
     BUILD_TYPE: "release"
-    QTVERSION: "qt5.15.1"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
   artifacts:
     paths:
-    - build-gcc-cpp14-qt5.15.1-release-vectorchecks/
+    - build-gcc-cpp14-qt6.7.1-release-vectorchecks/
 
 #-----------  Job Informations:
 # Type:       Test: release
@@ -334,7 +334,7 @@ build-release-gcc-cpp14-qt5.15.1:
 # Compiler:   gcc
 # Language:   cpp14
 
-test-release-gcc-cpp14-qt5.15.1:
+test-release-gcc-cpp14-qt6.7.1:
   stage: test
   script: "CI/ci-linux-test.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -345,17 +345,17 @@ test-release-gcc-cpp14-qt5.15.1:
     COMPILER: "gcc"
     LANGUAGE: "cpp14"
     BUILD_TYPE: "release"
-    QTVERSION: "qt5.15.1"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
-  dependencies: [build-release-gcc-cpp14-qt5.15.1]
-  needs: [build-release-gcc-cpp14-qt5.15.1]
+  dependencies: [build-release-gcc-cpp14-qt6.7.1]
+  needs: [build-release-gcc-cpp14-qt6.7.1]
   artifacts:
     reports:
       junit:
-        - build-gcc-cpp14-qt5.15.1-release-vectorchecks/Unittests/report.xml
-        - build-gcc-cpp14-qt5.15.1-release-vectorchecks/Unittests/report-customvec.xml
-        - build-gcc-cpp14-qt5.15.1-release-vectorchecks/Unittests/report-doublevec.xml
+        - build-gcc-cpp14-qt6.7.1-release-vectorchecks/Unittests/report.xml
+        - build-gcc-cpp14-qt6.7.1-release-vectorchecks/Unittests/report-customvec.xml
+        - build-gcc-cpp14-qt6.7.1-release-vectorchecks/Unittests/report-doublevec.xml
 
 
 #-----------  Job Informations:
@@ -363,9 +363,9 @@ test-release-gcc-cpp14-qt5.15.1:
 # OS:         Linux
 # Compiler:   clang
 # Language:   cpp14
-# QT Version: qt5.15.1
+# QT Version: qt6.7.1
 
-build-debug-clang-cpp14-qt5.15.1:
+build-debug-clang-cpp14-qt6.7.1:
   stage: build
   script: "CI/ci-linux-build.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -375,12 +375,12 @@ build-debug-clang-cpp14-qt5.15.1:
     COMPILER: "clang"
     LANGUAGE: "cpp14"
     BUILD_TYPE: "debug"
-    QTVERSION: "qt5.15.1"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
   artifacts:
     paths:
-    - build-clang-cpp14-qt5.15.1-debug-vectorchecks/
+    - build-clang-cpp14-qt6.7.1-debug-vectorchecks/
 
 #-----------  Job Informations:
 # Type:       Test: debug
@@ -388,7 +388,7 @@ build-debug-clang-cpp14-qt5.15.1:
 # Compiler:   clang
 # Language:   cpp14
 
-test-debug-clang-cpp14-qt5.15.1:
+test-debug-clang-cpp14-qt6.7.1:
   stage: test
   script: "CI/ci-linux-test.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -399,17 +399,17 @@ test-debug-clang-cpp14-qt5.15.1:
     COMPILER: "clang"
     LANGUAGE: "cpp14"
     BUILD_TYPE: "debug"
-    QTVERSION: "qt5.15.1"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
-  dependencies: [build-debug-clang-cpp14-qt5.15.1]
-  needs: [build-debug-clang-cpp14-qt5.15.1]
+  dependencies: [build-debug-clang-cpp14-qt6.7.1]
+  needs: [build-debug-clang-cpp14-qt6.7.1]
   artifacts:
     reports:
       junit:
-        - build-clang-cpp14-qt5.15.1-debug-vectorchecks/Unittests/report.xml
-        - build-clang-cpp14-qt5.15.1-debug-vectorchecks/Unittests/report-customvec.xml
-        - build-clang-cpp14-qt5.15.1-debug-vectorchecks/Unittests/report-doublevec.xml
+        - build-clang-cpp14-qt6.7.1-debug-vectorchecks/Unittests/report.xml
+        - build-clang-cpp14-qt6.7.1-debug-vectorchecks/Unittests/report-customvec.xml
+        - build-clang-cpp14-qt6.7.1-debug-vectorchecks/Unittests/report-doublevec.xml
 
 
 #-----------  Job Informations:
@@ -417,9 +417,9 @@ test-debug-clang-cpp14-qt5.15.1:
 # OS:         Linux
 # Compiler:   clang
 # Language:   cpp14
-# QT Version: qt5.15.1
+# QT Version: qt6.7.1
 
-build-release-clang-cpp14-qt5.15.1:
+build-release-clang-cpp14-qt6.7.1:
   stage: build
   script: "CI/ci-linux-build.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -429,12 +429,12 @@ build-release-clang-cpp14-qt5.15.1:
     COMPILER: "clang"
     LANGUAGE: "cpp14"
     BUILD_TYPE: "release"
-    QTVERSION: "qt5.15.1"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
   artifacts:
     paths:
-    - build-clang-cpp14-qt5.15.1-release-vectorchecks/
+    - build-clang-cpp14-qt6.7.1-release-vectorchecks/
 
 #-----------  Job Informations:
 # Type:       Test: release
@@ -442,7 +442,7 @@ build-release-clang-cpp14-qt5.15.1:
 # Compiler:   clang
 # Language:   cpp14
 
-test-release-clang-cpp14-qt5.15.1:
+test-release-clang-cpp14-qt6.7.1:
   stage: test
   script: "CI/ci-linux-test.sh"
   #image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
@@ -453,17 +453,17 @@ test-release-clang-cpp14-qt5.15.1:
     COMPILER: "clang"
     LANGUAGE: "cpp14"
     BUILD_TYPE: "release"
-    QTVERSION: "qt5.15.1"
+    QTVERSION: "qt6.7.1"
     IWYU: "no"
     VECTORCHECKS: "yes"
-  dependencies: [build-release-clang-cpp14-qt5.15.1]
-  needs: [build-release-clang-cpp14-qt5.15.1]
+  dependencies: [build-release-clang-cpp14-qt6.7.1]
+  needs: [build-release-clang-cpp14-qt6.7.1]
   artifacts:
     reports:
       junit:
-        - build-clang-cpp14-qt5.15.1-release-vectorchecks/Unittests/report.xml
-        - build-clang-cpp14-qt5.15.1-release-vectorchecks/Unittests/report-customvec.xml
-        - build-clang-cpp14-qt5.15.1-release-vectorchecks/Unittests/report-doublevec.xml
+        - build-clang-cpp14-qt6.7.1-release-vectorchecks/Unittests/report.xml
+        - build-clang-cpp14-qt6.7.1-release-vectorchecks/Unittests/report-customvec.xml
+        - build-clang-cpp14-qt6.7.1-release-vectorchecks/Unittests/report-doublevec.xml
 
 
 
