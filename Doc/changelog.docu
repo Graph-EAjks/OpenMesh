@@ -6,6 +6,20 @@
 
 <!-- --------------------------------------------------------------------- -->
 
+
+<tr valign=top><td><b>12.0</b> (?)</td><td>
+<b>Breaking Changes</b>
+<ul>
+<li>Property container type checks will not work on c++ < 17.</li>
+</ul>
+
+<b>Core</b>
+<ul>
+<li>Changed Property Container checks for correct types. Speeds up Debug builds (Thanks to G. Kuklin for the patch) </li>
+</ul>
+
+
+
 <tr valign=top><td><b>11.0</b> (2024/05/14)</td><td>
 
 <b>Core</b>
