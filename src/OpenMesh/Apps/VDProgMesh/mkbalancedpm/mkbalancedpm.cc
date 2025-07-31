@@ -93,7 +93,7 @@ public:
 
 
   /// Destructor
-  virtual ~ModBalancerT()
+  virtual ~ModBalancerT() override
   {
     BaseModQ::mesh().remove_property( level_ );
   }

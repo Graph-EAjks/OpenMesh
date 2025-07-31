@@ -171,7 +171,7 @@ public:
   }
 
   /// Destructor
-  virtual ~TriMeshT() {}
+  virtual ~TriMeshT() override {}
 
   //--- halfedge collapse / vertex split ---
 
