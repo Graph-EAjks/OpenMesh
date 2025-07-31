@@ -16,6 +16,12 @@
 <b>Core</b>
 <ul>
 <li>Changed Property Container checks for correct types. Speeds up Debug builds (Thanks to G. Kuklin for the patch) </li>
+<li>Some minor cleanups to avoid warnings.</li>
+</ul>
+
+<b>Build System</b>
+<ul>
+<li>Fixed missing header files on IOS and Mac installs. (Thanks to J.Tressler for the fix)</li>
 </ul>
 
 
