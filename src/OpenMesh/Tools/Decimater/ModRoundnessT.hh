@@ -103,7 +103,7 @@ class ModRoundnessT : public ModBaseT<MeshT>
   { }
 
   /// Destructor
-  ~ModRoundnessT() { }
+  ~ModRoundnessT() override { }
 
   public: // inherited
 

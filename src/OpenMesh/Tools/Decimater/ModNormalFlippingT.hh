@@ -100,7 +100,7 @@ public:
   }
 
 
-  ~ModNormalFlippingT()
+  ~ModNormalFlippingT() override
   {
     Base::mesh().release_face_normals();
   }
