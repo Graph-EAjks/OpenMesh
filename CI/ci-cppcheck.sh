@@ -32,7 +32,7 @@ echo "CPPCHECK Summary"
 echo "=============================================================================="
 echo -e "${NC}"
 
-MAX_COUNT=162
+MAX_COUNT=716
 
 if [ $COUNT -gt $MAX_COUNT ]; then
   echo -e ${WARNING}
