@@ -120,7 +120,7 @@ public:
   {  }
 
 
-  ~LongestEdgeT() {}
+  ~LongestEdgeT() override {}
 
 
 public:

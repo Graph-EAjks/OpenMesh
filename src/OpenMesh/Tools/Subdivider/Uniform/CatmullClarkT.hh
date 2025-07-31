@@ -110,7 +110,7 @@ public:
   /// Constructor
   explicit CatmullClarkT(MeshType &_m) : parent_t(_m) {  }
 
-  virtual ~CatmullClarkT() {}
+  virtual ~CatmullClarkT() override {}
 
 public:
 

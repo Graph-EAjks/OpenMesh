@@ -111,7 +111,7 @@ public:
   { init_weights(); }
 
 
-  ~ModifiedButterflyT() {}
+  ~ModifiedButterflyT() override {}
 
 
 public:
