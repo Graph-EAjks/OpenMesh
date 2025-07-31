@@ -38,7 +38,7 @@ bool is_correct_type_name(const std::string& name)
     const char* correct_name = typeid(T).name();
 #endif
     size_t pos = 0;
-    while (correct_name[pos] != 0 && pos < name.size()) {
+    while (pos < name.size() && correct_name[pos] != 0 ) {
         if (correct_name[pos] != name[pos]) {
             return false;
         }
