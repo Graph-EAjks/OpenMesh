@@ -92,7 +92,7 @@ public: //------------------------------------------------------ public methods
   explicit DecimaterT( Mesh& _mesh );
 
   /// Destructor
-  ~DecimaterT();
+  ~DecimaterT() override;
 
 public:
 

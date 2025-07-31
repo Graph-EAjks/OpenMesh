@@ -96,7 +96,7 @@ class ModAspectRatioT: public ModBaseT<MeshT> {
     }
 
     /// destructor
-    ~ModAspectRatioT() {
+    ~ModAspectRatioT() override {
       mesh_.remove_property(aspect_);
     }
 

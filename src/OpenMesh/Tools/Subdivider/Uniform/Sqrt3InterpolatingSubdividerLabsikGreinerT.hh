@@ -122,7 +122,7 @@ public:
   explicit InterpolatingSqrt3LGT(MeshType &_m) : parent_t(_m)
   { init_weights(); }
 
-  virtual ~InterpolatingSqrt3LGT() {}
+  virtual ~InterpolatingSqrt3LGT() override {}
 
 
 public:

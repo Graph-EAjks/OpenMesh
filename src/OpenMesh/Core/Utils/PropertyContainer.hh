@@ -287,7 +287,7 @@ protected: // generic add/get
   {
     assert( _idx < properties_.size());
     assert( properties_[_idx] != nullptr);
-    BaseProperty *p = properties_[_idx];
+    const BaseProperty *p = properties_[_idx];
     assert( p != nullptr );
     return *p;
   }

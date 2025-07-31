@@ -93,7 +93,7 @@ class ModHausdorffT: public ModBaseT<MeshT> {
     }
 
     /// Destructor
-    ~ModHausdorffT() {
+    ~ModHausdorffT() override {
       mesh_.remove_property(points_);
     }
 

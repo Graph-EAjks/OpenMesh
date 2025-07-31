@@ -115,7 +115,7 @@ public:
 
 
   /// Destructor
-  ~ModProgMeshT()
+  ~ModProgMeshT() override
   {
     Base::mesh().remove_property( idx_ );
   }

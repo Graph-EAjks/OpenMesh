@@ -94,7 +94,7 @@ public:
 
 
   /// Destructor
-  virtual ~ModQuadricT()
+  virtual ~ModQuadricT() override
   {
     Base::mesh().remove_property(quadrics_);
   }

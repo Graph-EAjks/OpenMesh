@@ -122,7 +122,7 @@ public:
 
 
   /// Destructor
-  ~ModNormalDeviationT() {
+  ~ModNormalDeviationT() override {
     mesh_.remove_property(normal_cones_);
     mesh_.release_face_normals();
   }

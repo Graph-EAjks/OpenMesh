@@ -110,7 +110,7 @@ public:
   { init_weights(); }
 
 
-  ~LoopT() {}
+  ~LoopT() override {}
 
 
 public:

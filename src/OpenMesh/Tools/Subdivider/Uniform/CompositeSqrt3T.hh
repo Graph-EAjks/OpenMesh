@@ -83,7 +83,7 @@ public:
 
   CompositeSqrt3T() : Inherited() {};
   explicit CompositeSqrt3T(MeshType& _mesh) : Inherited(_mesh) {};
-  ~CompositeSqrt3T() {}
+  ~CompositeSqrt3T() override {}
 
 public:
    
