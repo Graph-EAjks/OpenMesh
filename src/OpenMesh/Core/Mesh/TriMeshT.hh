@@ -435,7 +435,7 @@ public:
   //@{
 
   /** Calculate normal vector for face _fh (specialized for TriMesh). */
-  Normal calc_face_normal(FaceHandle _fh) const;
+  Normal calc_face_normal(FaceHandle _fh) override const;
 
   //@}
 };
