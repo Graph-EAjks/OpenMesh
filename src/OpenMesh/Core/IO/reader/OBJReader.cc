@@ -531,7 +531,7 @@ read(std::istream& _in, BaseImporter& _bi, Options& _opt)
     // faces
     else if (keyWrd == "f")
     {
-      int component(0), nV(0);
+      int component(0);
       int value;
 
       vhandles.clear();
@@ -688,7 +688,6 @@ read(std::istream& _in, BaseImporter& _bi, Options& _opt)
         } while ( !vertex.empty() );
 
         component = 0;
-        nV++;
 
       }
 
