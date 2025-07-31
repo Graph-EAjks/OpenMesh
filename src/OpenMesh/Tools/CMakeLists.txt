@@ -27,6 +27,10 @@ Decimater/ModQuadricT_impl.hh
 Decimater/ModRoundnessT.hh
 Decimater/Observer.hh
 Dualizer/meshDualT.hh
+HoleFiller/HoleFillerT.hh
+HoleFiller/HoleFillerT_impl.hh
+SmartTagger/SmartTaggerT.hh
+SmartTagger/SmartTaggerT_impl.hh
 Smoother/JacobiLaplaceSmootherT.hh
 Smoother/JacobiLaplaceSmootherT_impl.hh
 Smoother/LaplaceSmootherT.hh
@@ -159,8 +163,10 @@ endif()
 if ( NOT VCI_PROJECT_MACOS_BUNDLE AND APPLE )
  FILE(GLOB files_install_Decimater                       "${CMAKE_CURRENT_SOURCE_DIR}/Decimater/*.hh" )
  FILE(GLOB files_install_Dualizer                        "${CMAKE_CURRENT_SOURCE_DIR}/Dualizer/*.hh" )
+ FILE(GLOB files_install_HoleFiller                      "${CMAKE_CURRENT_SOURCE_DIR}/HoleFiller/*.hh" )
  FILE(GLOB files_install_KERNEL_OSG                      "${CMAKE_CURRENT_SOURCE_DIR}/Kernel_OSG/*.hh" )
  FILE(GLOB files_install_Smoother                        "${CMAKE_CURRENT_SOURCE_DIR}/Smoother/*.hh" )
+ FILE(GLOB files_install_SmartTagger                     "${CMAKE_CURRENT_SOURCE_DIR}/SmartTagger/*.hh" )
  FILE(GLOB files_install_Subdivider_Adaptive             "${CMAKE_CURRENT_SOURCE_DIR}/Subdivider/Adaptive/Composite/*.hh" )
  FILE(GLOB files_install_Subdivider_Uniform              "${CMAKE_CURRENT_SOURCE_DIR}/Subdivider/Uniform/*.hh" )
  FILE(GLOB files_install_Subdivider_Uniform_Composite    "${CMAKE_CURRENT_SOURCE_DIR}/Subdivider/Uniform/Composite/*.hh" )

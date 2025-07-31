@@ -34,6 +34,10 @@ elif [ "$LANGUAGE" == "cpp14" ]; then
   echo "Building with C++14";
   OPTIONS="$OPTIONS -DCMAKE_CXX_FLAGS='-std=c++14' "
   BUILDPATH="$BUILDPATH-cpp14"  
+elif [ "$LANGUAGE" == "cpp17" ]; then
+  echo "Building with C++17";
+  OPTIONS="$OPTIONS -DCMAKE_CXX_FLAGS='-std=c++17' "
+  BUILDPATH="$BUILDPATH-cpp17"
 fi  
 
 if [ "$QTVERSION" == "qt5.13.0" ]; then
@@ -72,6 +76,10 @@ elif [ "$QTVERSION" == "qt6.1.2" ]; then
   echo "Using QT6.0.3";
   BUILDPATH="$BUILDPATH-qt6.1.2"
   OPTIONS="$OPTIONS -DQT_INSTALL_PATH=~/sw/Qt/6.1.2/gcc_64 -DQT_VERSION=6"
+elif [ "$QTVERSION" == "qt6.7.1" ]; then
+  echo "Using QT6.7.1";
+  BUILDPATH="$BUILDPATH-qt6.7.1"
+  OPTIONS="$OPTIONS -DQT_INSTALL_PATH=~/sw/Qt/6.7.1/gcc_64 -DQT_VERSION=6"
 fi
 
 
