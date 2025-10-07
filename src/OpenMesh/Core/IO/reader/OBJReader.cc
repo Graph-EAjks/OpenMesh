@@ -287,8 +287,8 @@ read_vertices(std::istream& _in, BaseImporter& _bi, Options& _opt,
               std::vector<VertexHandle> & vertexHandles,
               Options & fileOptions)
 {
-    double x, y, z, u, v, w;
-    double r, g, b;
+    float x, y, z, u, v, w;
+    float r, g, b;
 
     std::string line;
     std::string keyWrd;
