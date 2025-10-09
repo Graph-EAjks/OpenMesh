@@ -68,6 +68,9 @@ public:
   /// Get the underlying index of this handle
   int idx() const { return idx_; }
 
+  /// Get the underlying index of this handle as size_t
+  size_t uidx() const { assert (is_valid()); return static_cast<size_t>(idx_); }
+
   /// The handle is valid iff the index is not negative.
   bool is_valid() const { return idx_ >= 0; }
 
