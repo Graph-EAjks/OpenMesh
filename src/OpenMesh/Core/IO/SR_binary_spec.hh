@@ -194,7 +194,7 @@ SIMPLE_BINARY(unsigned long);
       if (_swap)                                                \
         for (size_t i=0; i<N; ++i)                              \
           reverse_byte_order( tmp[i] );                         \
-      _os.write( (const char*)&tmp[0], b );                     \
+      _os.write( (const char*)&tmp[0], std::streamsize(b));     \
       return _os.good() ? b : 0;                                \
     }                                                           \
                                                                 \
@@ -202,7 +202,7 @@ SIMPLE_BINARY(unsigned long);
              bool _swap=false) {                                \
       size_t N=value_type::size_;                               \
       size_t b = N * sizeof(value_type::value_type);            \
-      _is.read( (char*)&_val[0], b );                           \
+      _is.read( (char*)&_val[0], std::streamsize(b));           \
       if (_swap) for (size_t i=0; i<N; ++i)                     \
         reverse_byte_order( _val[i] );                          \
       return _is.good() ? b : 0;                                \
@@ -375,7 +375,7 @@ struct binary< std::vector< T >, typename std::enable_if<std::is_default_constru
         auto bytes_of_vec = size_of(_v, false);
         bytes += bytes_of_vec;
         if (_v.size() > 0)
-          _os.write( reinterpret_cast<const char*>(&_v[0]), bytes_of_vec);
+          _os.write( reinterpret_cast<const char*>(&_v[0]), std::streamsize(bytes_of_vec));
       }
       else
       {
@@ -411,7 +411,7 @@ struct binary< std::vector< T >, typename std::enable_if<std::is_default_constru
         auto bytes_of_vec = size_of(_v, false);
         bytes += bytes_of_vec;
         if (_v.size() > 0)
-          _is.read( reinterpret_cast<char*>(&_v[0]), bytes_of_vec );
+          _is.read( reinterpret_cast<char*>(&_v[0]), std::streamsize(bytes_of_vec));
       }
       else
       {
