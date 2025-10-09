@@ -284,14 +284,15 @@ public:
 
     for (bidx=idx=0; idx < N; ++idx, bidx+=8)
     {
-      bits = static_cast<unsigned char>(data_[bidx])
-        | (static_cast<unsigned char>(data_[bidx+1]) << 1)
-        | (static_cast<unsigned char>(data_[bidx+2]) << 2)
-        | (static_cast<unsigned char>(data_[bidx+3]) << 3)
-        | (static_cast<unsigned char>(data_[bidx+4]) << 4)
-        | (static_cast<unsigned char>(data_[bidx+5]) << 5)
-        | (static_cast<unsigned char>(data_[bidx+6]) << 6)
-        | (static_cast<unsigned char>(data_[bidx+7]) << 7);
+      bits = static_cast<unsigned char>(
+                 static_cast<unsigned char>(data_[bidx])
+              | (static_cast<unsigned char>(data_[bidx+1]) << 1)
+              | (static_cast<unsigned char>(data_[bidx+2]) << 2)
+              | (static_cast<unsigned char>(data_[bidx+3]) << 3)
+              | (static_cast<unsigned char>(data_[bidx+4]) << 4)
+              | (static_cast<unsigned char>(data_[bidx+5]) << 5)
+              | (static_cast<unsigned char>(data_[bidx+6]) << 6)
+              | (static_cast<unsigned char>(data_[bidx+7]) << 7));
       _ostr << bits;
     }
     bytes = N;

@@ -35,14 +35,15 @@ template <> struct binary< std::vector<bool> >
 
     for (bidx=idx=0; idx < N; ++idx, bidx+=8)
     {
-      bits = static_cast<unsigned char>(_v[bidx])
-        | (static_cast<unsigned char>(_v[bidx+1]) << 1)
-        | (static_cast<unsigned char>(_v[bidx+2]) << 2)
-        | (static_cast<unsigned char>(_v[bidx+3]) << 3)
-        | (static_cast<unsigned char>(_v[bidx+4]) << 4)
-        | (static_cast<unsigned char>(_v[bidx+5]) << 5)
-        | (static_cast<unsigned char>(_v[bidx+6]) << 6)
-        | (static_cast<unsigned char>(_v[bidx+7]) << 7);
+      bits = static_cast<unsigned char>(
+                 static_cast<unsigned char>(_v[bidx])
+              | (static_cast<unsigned char>(_v[bidx+1]) << 1)
+              | (static_cast<unsigned char>(_v[bidx+2]) << 2)
+              | (static_cast<unsigned char>(_v[bidx+3]) << 3)
+              | (static_cast<unsigned char>(_v[bidx+4]) << 4)
+              | (static_cast<unsigned char>(_v[bidx+5]) << 5)
+              | (static_cast<unsigned char>(_v[bidx+6]) << 6)
+              | (static_cast<unsigned char>(_v[bidx+7]) << 7));
       _ostr << bits;
     }
     bytes += N;
