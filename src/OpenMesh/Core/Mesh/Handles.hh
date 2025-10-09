@@ -105,7 +105,7 @@ private:
 };
 
 // this is used by boost::unordered_set/map
-inline size_t hash_value(const BaseHandle&  h)   { return h.idx(); }
+inline size_t hash_value(const BaseHandle&  h)   { return h.uidx(); }
 
 //-----------------------------------------------------------------------------
 
@@ -178,7 +178,7 @@ struct hash<OpenMesh::BaseHandle >
 
   std::size_t operator()(const OpenMesh::BaseHandle& h) const
   {
-    return h.idx();
+    return h.uidx();
   }
 };
 
@@ -190,7 +190,7 @@ struct hash<OpenMesh::VertexHandle >
 
   std::size_t operator()(const OpenMesh::VertexHandle& h) const
   {
-    return h.idx();
+    return h.uidx();
   }
 };
 
@@ -203,7 +203,7 @@ struct hash<OpenMesh::HalfedgeHandle >
   
   std::size_t operator()(const OpenMesh::HalfedgeHandle& h) const
   {
-    return h.idx();
+    return h.uidx();
   }
 };
 
@@ -216,7 +216,7 @@ struct hash<OpenMesh::EdgeHandle >
   
   std::size_t operator()(const OpenMesh::EdgeHandle& h) const
   {
-    return h.idx();
+    return h.uidx();
   }
 };
 
@@ -229,7 +229,7 @@ struct hash<OpenMesh::FaceHandle >
   
   std::size_t operator()(const OpenMesh::FaceHandle& h) const
   {
-    return h.idx();
+    return h.uidx();
   }
 };
 

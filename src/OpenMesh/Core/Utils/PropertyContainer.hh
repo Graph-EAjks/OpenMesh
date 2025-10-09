@@ -97,11 +97,11 @@ public:
   BasePropHandleT<T> add(const T&, const std::string& _name="<unknown>")
   {
     Properties::iterator p_it=properties_.begin(), p_end=properties_.end();
-    int idx=0;
+    size_t idx=0;
     for ( ; p_it!=p_end && *p_it!=nullptr; ++p_it, ++idx ) {};
     if (p_it==p_end) properties_.push_back(nullptr);
     properties_[idx] = new PropertyT<T>(_name, get_type_name<T>() );        // create a new property with requested name and given (system dependent) internal typename
-    return BasePropHandleT<T>(idx);
+    return BasePropHandleT<T>(int(idx));
   }
 
 
@@ -140,7 +140,7 @@ public:
     assert(_h.idx() >= 0 && _h.idx() < (int)properties_.size());
     assert(properties_[_h.idx()] != nullptr);
     assert( is_correct_type_name<T>( properties_[_h.idx()]->internal_type_name() ) );
-    PropertyT<T> *p = static_cast< PropertyT<T>* > (properties_[_h.idx()]);
+    PropertyT<T> *p = static_cast< PropertyT<T>* > (properties_[_h.uidx()]);
     assert(p != nullptr);
     return *p;
   }
@@ -151,7 +151,7 @@ public:
     assert(_h.idx() >= 0 && _h.idx() < (int)properties_.size());
     assert(properties_[_h.idx()] != nullptr);
     assert( is_correct_type_name<T>( properties_[_h.idx()]->internal_type_name() ) );
-    PropertyT<T> *p = static_cast< PropertyT<T>* > (properties_[_h.idx()]);
+    PropertyT<T> *p = static_cast< PropertyT<T>* > (properties_[_h.uidx()]);
     assert(p != nullptr);
     return *p;
   }
@@ -160,8 +160,8 @@ public:
   template <class T> void remove(BasePropHandleT<T> _h)
   {
     assert(_h.idx() >= 0 && _h.idx() < (int)properties_.size());
-    delete properties_[_h.idx()];
-    properties_[_h.idx()] = nullptr;
+    delete properties_[_h.uidx()];
+    properties_[_h.uidx()] = nullptr;
   }
 
 

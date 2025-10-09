@@ -140,49 +140,49 @@ public:
   const Vertex& vertex(VertexHandle _vh) const
   {
     assert(is_valid_handle(_vh));
-    return vertices_[_vh.idx()];
+    return vertices_[_vh.uidx()];
   }
 
   Vertex& vertex(VertexHandle _vh)
   {
     assert(is_valid_handle(_vh));
-    return vertices_[_vh.idx()];
+    return vertices_[_vh.uidx()];
   }
 
   const Halfedge& halfedge(HalfedgeHandle _heh) const
   {
     assert(is_valid_handle(_heh));
-    return edges_[_heh.idx() >> 1].halfedges_[_heh.idx() & 1];
+    return edges_[_heh.uidx() >> 1].halfedges_[_heh.idx() & 1];
   }
 
   Halfedge& halfedge(HalfedgeHandle _heh)
   {
     assert(is_valid_handle(_heh));
-    return edges_[_heh.idx() >> 1].halfedges_[_heh.idx() & 1];
+    return edges_[_heh.uidx() >> 1].halfedges_[_heh.idx() & 1];
   }
 
   const Edge& edge(EdgeHandle _eh) const
   {
     assert(is_valid_handle(_eh));
-    return edges_[_eh.idx()];
+    return edges_[_eh.uidx()];
   }
 
   Edge& edge(EdgeHandle _eh)
   {
     assert(is_valid_handle(_eh));
-    return edges_[_eh.idx()];
+    return edges_[_eh.uidx()];
   }
 
   const Face& face(FaceHandle _fh) const
   {
     assert(is_valid_handle(_fh));
-    return faces_[_fh.idx()];
+    return faces_[_fh.uidx()];
   }
 
   Face& face(FaceHandle _fh)
   {
     assert(is_valid_handle(_fh));
-    return faces_[_fh.idx()];
+    return faces_[_fh.uidx()];
   }
 
   // --- get i'th items ---
@@ -474,7 +474,7 @@ public:
   static HalfedgeHandle s_halfedge_handle(EdgeHandle _eh, unsigned int _i = 0)
   {
     assert(_i<=1);
-    return HalfedgeHandle((_eh.idx() << 1) + _i);
+    return HalfedgeHandle((_eh.idx() << 1) + int(_i));
   }
 
   static EdgeHandle s_edge_handle(HalfedgeHandle _heh)

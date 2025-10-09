@@ -195,14 +195,14 @@ public: // data access interface
   reference operator[](int _idx)
   {
     assert( size_t(_idx) < data_.size() );
-    return data_[_idx];
+    return data_[size_t(_idx)];
   }
 
   /// Const access to the i'th element. No range check is performed!
   const_reference operator[](int _idx) const
   {
     assert( size_t(_idx) < data_.size());
-    return data_[_idx];
+    return data_[size_t(_idx)];
   }
 
   /// Make a copy of self.
@@ -364,14 +364,14 @@ public:
   reference operator[](int _idx)
   {
     assert( size_t(_idx) < data_.size() );
-    return data_[_idx];
+    return data_[size_t(_idx)];
   }
 
   /// Const access to the i'th element. No range check is performed!
   const_reference operator[](int _idx) const
   {
     assert( size_t(_idx) < data_.size());
-    return data_[_idx];
+    return data_[size_t(_idx)];
   }
 
   /// Make a copy of self.

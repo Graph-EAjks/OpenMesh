@@ -209,7 +209,7 @@ void ArrayKernel::garbage_collection(std_API_Container_VHandlePointer& vh_to_upd
       vh = handle(*v_it);
       if (!is_isolated(vh))
       {
-        set_halfedge_handle(vh, hh_map[halfedge_handle(vh).idx()]);
+        set_halfedge_handle(vh, hh_map[halfedge_handle(vh).uidx()]);
       }
     }
   }
@@ -219,23 +219,23 @@ void ArrayKernel::garbage_collection(std_API_Container_VHandlePointer& vh_to_upd
   for (KernelEdgeIter e_it(edges_begin()); e_it != edges_end(); ++e_it)
   {//in the first pass update the (half)edges vertices
     hh = halfedge_handle(handle(*e_it), 0);
-    set_vertex_handle(hh, vh_map[to_vertex_handle(hh).idx()]);
+    set_vertex_handle(hh, vh_map[to_vertex_handle(hh).uidx()]);
     hh = halfedge_handle(handle(*e_it), 1);
-    set_vertex_handle(hh, vh_map[to_vertex_handle(hh).idx()]);
+    set_vertex_handle(hh, vh_map[to_vertex_handle(hh).uidx()]);
   }
   for (KernelEdgeIter e_it(edges_begin()); e_it != edges_end(); ++e_it)
   {//in the second pass update the connectivity of the (half)edges
     hh = halfedge_handle(handle(*e_it), 0);
-    set_next_halfedge_handle(hh, hh_map[next_halfedge_handle(hh).idx()]);
+    set_next_halfedge_handle(hh, hh_map[next_halfedge_handle(hh).uidx()]);
     if (!is_boundary(hh))
     {
-      set_face_handle(hh, fh_map[face_handle(hh).idx()]);
+      set_face_handle(hh, fh_map[face_handle(hh).uidx()]);
     }
     hh = halfedge_handle(handle(*e_it), 1);
-    set_next_halfedge_handle(hh, hh_map[next_halfedge_handle(hh).idx()]);
+    set_next_halfedge_handle(hh, hh_map[next_halfedge_handle(hh).uidx()]);
     if (!is_boundary(hh))
     {
-      set_face_handle(hh, fh_map[face_handle(hh).idx()]);
+      set_face_handle(hh, fh_map[face_handle(hh).uidx()]);
     }
   }
 
@@ -248,7 +248,7 @@ void ArrayKernel::garbage_collection(std_API_Container_VHandlePointer& vh_to_upd
     for (; f_it!=f_end; ++f_it)
     {
       fh = handle(*f_it);
-      set_halfedge_handle(fh, hh_map[halfedge_handle(fh).idx()]);
+      set_halfedge_handle(fh, hh_map[halfedge_handle(fh).uidx()]);
     }
   }
 

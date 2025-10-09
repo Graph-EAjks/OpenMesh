@@ -535,7 +535,7 @@ public:
       // Copy all properties, if build in is true
       // Otherwise, copy only properties without build in specifier
       if ( *p_it && ( _copyBuildIn || (*p_it)->name().substr(0,2) != "h:") )
-        (*p_it)->copy(_hh_from.idx(), _hh_to.idx());
+        (*p_it)->copy(_hh_from.uidx(), _hh_to.uidx());
 
     }
   }
@@ -553,7 +553,7 @@ public:
       // Copy all properties, if build in is true
       // Otherwise, copy only properties without build in specifier
       if ( *p_it && ( _copyBuildIn || (*p_it)->name().substr(0,2) != "e:") )
-        (*p_it)->copy(_eh_from.idx(), _eh_to.idx());
+        (*p_it)->copy(_eh_from.uidx(), _eh_to.uidx());
 
     }
   }
@@ -573,7 +573,7 @@ public:
       // Copy all properties, if build in is true
       // Otherwise, copy only properties without build in specifier
       if ( *p_it && ( _copyBuildIn || (*p_it)->name().substr(0,2) != "f:") )
-        (*p_it)->copy(_fh_from.idx(), _fh_to.idx());
+        (*p_it)->copy(_fh_from.uidx(), _fh_to.uidx());
     }
 
   }
@@ -660,26 +660,26 @@ public: // used by non-native kernel and MeshIO, should be protected
 protected: // low-level access non-public
 
   BaseProperty& _vprop( BaseHandle _h )
-  { return vprops_._property( _h.idx() ); }
+  { return vprops_._property( _h.uidx() ); }
   BaseProperty& _eprop( BaseHandle _h )
-  { return eprops_._property( _h.idx() ); }
+  { return eprops_._property( _h.uidx() ); }
   BaseProperty& _hprop( BaseHandle _h )
-  { return hprops_._property( _h.idx() ); }
+  { return hprops_._property( _h.uidx() ); }
   BaseProperty& _fprop( BaseHandle _h )
-  { return fprops_._property( _h.idx() ); }
+  { return fprops_._property( _h.uidx() ); }
   BaseProperty& _mprop( BaseHandle _h )
-  { return mprops_._property( _h.idx() ); }
+  { return mprops_._property( _h.uidx() ); }
 
   const BaseProperty& _vprop( BaseHandle _h ) const
-  { return vprops_._property( _h.idx() ); }
+  { return vprops_._property( _h.uidx() ); }
   const BaseProperty& _eprop( BaseHandle _h ) const
-  { return eprops_._property( _h.idx() ); }
+  { return eprops_._property( _h.uidx() ); }
   const BaseProperty& _hprop( BaseHandle _h ) const
-  { return hprops_._property( _h.idx() ); }
+  { return hprops_._property( _h.uidx() ); }
   const BaseProperty& _fprop( BaseHandle _h ) const
-  { return fprops_._property( _h.idx() ); }
+  { return fprops_._property( _h.uidx() ); }
   const BaseProperty& _mprop( BaseHandle _h ) const
-  { return mprops_._property( _h.idx() ); }
+  { return mprops_._property( _h.uidx() ); }
 
 
 public: //----------------------------------------------------- element numbers
