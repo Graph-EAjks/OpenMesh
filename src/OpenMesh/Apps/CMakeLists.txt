@@ -91,7 +91,7 @@ if ( BUILD_APPS )
       endif ()
 
       if (NOT OPENGL_FOUND)
-	    message ("OpengGL not found! Skipping some apps.")
+	    message ("OpenGL not found! Skipping some apps.")
       endif ()
 
     endif ()
