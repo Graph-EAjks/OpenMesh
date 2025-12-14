@@ -77,7 +77,6 @@ Mesh/gen/circulators_template.hh
 Mesh/gen/footer.hh
 Mesh/gen/iterators_header.hh
 Mesh/gen/iterators_template.hh
-System/OpenMeshDLLMacros.hh
 System/compiler.hh
 System/config.hh
 System/mostream.hh
@@ -137,38 +136,41 @@ endif()
 
 
 if (WIN32)
-
   if ( OPENMESH_BUILD_SHARED )
-    add_definitions( -DOPENMESHDLL -DBUILDOPENMESHDLL)
     vci_add_library (OpenMeshCore SHARED ${sources} ${headers})
   else()
     vci_add_library (OpenMeshCore STATIC ${sources} ${headers})
   endif()
-
-  target_include_directories(OpenMeshCore PUBLIC
-                                        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
-                                        $<INSTALL_INTERFACE:include>)
-
-
 else ()
   vci_add_library (OpenMeshCore SHAREDANDSTATIC ${sources} ${headers})
-
-  target_include_directories(OpenMeshCore PUBLIC
-                                          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
-                                          $<INSTALL_INTERFACE:include>)
-
-  target_include_directories(OpenMeshCoreStatic PUBLIC
-                                          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
-                                          $<INSTALL_INTERFACE:include>)
-
-  set_target_properties (OpenMeshCore PROPERTIES VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-                                               SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR} )
 endif ()
 
-if (MSVC)
-  target_compile_options(OpenMeshCore PUBLIC /bigobj)
-  target_compile_definitions(OpenMeshCore PUBLIC -D_USE_MATH_DEFINES -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS)
-endif ()
+include(GenerateExportHeader)
+foreach(_target OpenMeshCore OpenMeshCoreStatic)
+    if (TARGET ${_target})
+        target_include_directories(${_target} PUBLIC
+                                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
+                                                $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+                                                $<INSTALL_INTERFACE:include>)
+        generate_export_header(OpenMeshCore
+            EXPORT_FILE_NAME "include/OpenMesh/Core/System/OpenMeshDLLMacros.hh"
+            EXPORT_MACRO_NAME "OPENMESHDLLEXPORT"
+        )
+        set_target_properties(${_target}
+            PROPERTIES
+            #CXX_VISIBILITY_PRESET hidden
+            #VISIBILITY_INLINES_HIDDEN ON
+            VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+            SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR} )
+        if (MSVC)
+            target_compile_options(${_target} PUBLIC /bigobj)
+            target_compile_definitions(${_target} PUBLIC -D_USE_MATH_DEFINES -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS)
+        endif ()
+
+    endif()
+endforeach()
+
+
 
 # Add core as dependency before fixbundle 
 if ( (${CMAKE_PROJECT_NAME} MATCHES "OpenMesh") AND BUILD_APPS )
@@ -236,7 +238,9 @@ install(DIRECTORY .
         PATTERN "Debian*" EXCLUDE)
 
 #install the config file
-install(FILES System/config.h DESTINATION include/OpenMesh/Core/System)
+install(FILES System/config.h
+              "${CMAKE_CURRENT_BINARY_DIR}/include/OpenMesh/Core/System/OpenMeshDLLMacros.hh"
+        DESTINATION include/OpenMesh/Core/System)
 
 endif ()
 

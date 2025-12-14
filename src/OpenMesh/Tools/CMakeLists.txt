@@ -106,39 +106,40 @@ endif()
 
 
 if (WIN32)
-
   if ( OPENMESH_BUILD_SHARED )
-    add_definitions( -DOPENMESHDLL -DBUILDOPENMESHDLL)
     vci_add_library (OpenMeshTools SHARED ${sources} ${headers})
   else()
     # OpenMesh has no dll exports so we have to build a static library on windows
     vci_add_library (OpenMeshTools STATIC ${sources} ${headers})
   endif()
-
-  target_include_directories(OpenMeshTools PUBLIC
-                                        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
-                                        $<INSTALL_INTERFACE:include>)
-
 else ()
   vci_add_library (OpenMeshTools SHAREDANDSTATIC ${sources} ${headers})
 
-  target_include_directories(OpenMeshTools PUBLIC
-                                          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
-                                          $<INSTALL_INTERFACE:include>)
-
-  target_include_directories(OpenMeshToolsStatic PUBLIC
-                                          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
-                                          $<INSTALL_INTERFACE:include>)
-
-  set_target_properties (OpenMeshTools PROPERTIES VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-                                                SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR} )
 endif ()
 
-target_link_libraries (OpenMeshTools OpenMeshCore)
+foreach(_target OpenMeshTools OpenMeshToolsStatic)
+    if (TARGET ${_target})
+        target_include_directories(${_target} PUBLIC
+                                          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../..>
+                                          $<INSTALL_INTERFACE:include>)
+        set_target_properties (${_target}
+            PROPERTIES
+            #CXX_VISIBILITY_PRESET hidden
+            #VISIBILITY_INLINES_HIDDEN ON
+            VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+            SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR} )
 
-IF( NOT WIN32 )
-  target_link_libraries (OpenMeshToolsStatic OpenMeshCoreStatic)
-ENDIF(NOT WIN32)
+    endif()
+endforeach()
+
+
+if(TARGET OpenMeshTools)
+    target_link_libraries (OpenMeshTools PUBLIC OpenMeshCore)
+endif()
+
+if(TARGET OpenMeshToolsStatic)
+    target_link_libraries (OpenMeshToolsStatic PUBLIC OpenMeshCoreStatic)
+endif()
 
 if ( (${CMAKE_PROJECT_NAME} MATCHES "OpenMesh") AND BUILD_APPS )
 
