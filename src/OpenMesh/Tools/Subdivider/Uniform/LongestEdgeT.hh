@@ -126,7 +126,7 @@ public:
 public:
 
 
-  const char *name() const { return "Longest Edge Split"; }
+  const char *name() const override { return "Longest Edge Split"; }
 
   void set_max_edge_length(double _value) {
     max_edge_length_squared_ = _value * _value;
@@ -135,19 +135,19 @@ public:
 protected:
 
 
-  bool prepare( mesh_t& _m )
+  bool prepare( mesh_t& _m ) override
   {
     return true;
   }
 
 
-  bool cleanup( mesh_t& _m )
+  bool cleanup( mesh_t& _m ) override
   {
     return true;
   }
 
 
-  bool subdivide( MeshType& _m, size_t _n , const bool _update_points = true)
+  bool subdivide( MeshType& _m, size_t _n , const bool _update_points = true) override
   {
 
     // Sorted queue containing all edges sorted by their decreasing length
