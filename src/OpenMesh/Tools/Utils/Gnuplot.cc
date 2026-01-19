@@ -168,8 +168,8 @@ Gnuplot::Gnuplot(const string &title,  const string &style,
   
   if (style == "")
     this->set_style("lines");
-    else
-      this->set_style(style);
+  else
+    this->set_style(style);
   
   if (labelx == "")
     this->set_xlabel("X");
@@ -264,7 +264,7 @@ void Gnuplot::cmd(const char *_cmd, ...)
     char local_cmd[GP_CMD_SIZE];
 
     va_start(ap, _cmd);
-    vsprintf(local_cmd, _cmd, ap);
+    vsnprintf(local_cmd, sizeof local_cmd, _cmd, ap);
     va_end(ap);
 
     strcat(local_cmd,"\n");
