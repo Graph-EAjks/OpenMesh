@@ -38,7 +38,18 @@ endif()
 
 # add our macro directory to cmake search path
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_CURRENT_SOURCE_DIR}/cmake-library/finders ${CMAKE_CURRENT_SOURCE_DIR}/cmake-library/VCI )
-set (CMAKE_DEBUG_POSTFIX "d")
+
+
+
+# Define disable debug postfix option
+option(OPENMESH_DISABLE_DEBUG_POSTFIX
+       "Disable the debug postfix (e.g. _d) on targets"
+       OFF)
+
+# If not disabled set Debug-Postfix
+if(NOT OPENMESH_DISABLE_DEBUG_POSTFIX)
+    set(CMAKE_DEBUG_POSTFIX "d")
+endif()
 
 # include our cmake files
 include (VCICommon)
