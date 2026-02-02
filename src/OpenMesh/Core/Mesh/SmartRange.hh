@@ -77,6 +77,14 @@ struct SmartRangeT
   using Range = RangeT;
 
   // TODO: Someone with better c++ knowledge may improve the code below.
+  
+  /** @brief Computes number of elements.
+   */
+  auto size() const -> size_t
+  {
+      auto range = static_cast<const RangeT*>(this);
+      return std::distance(range->begin(), range->end());
+  }
 
   /** @brief Computes the sum of elements.
    *

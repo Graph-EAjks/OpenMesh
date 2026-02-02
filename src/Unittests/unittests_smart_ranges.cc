@@ -193,6 +193,14 @@ TEST_F(OpenMeshSmartRanges, Sum)
     EXPECT_EQ(fh.faces().sum(F<OpenMesh::FaceHandle>()), 3u);
 }
 
+TEST_F(OpenMeshSmartRanges, Size)
+{
+    EXPECT_EQ(mesh_.n_faces(), mesh_.faces().size());
+    mesh_.request_face_status(); // required for soft deletion
+    mesh_.delete_face(*mesh_.faces_begin());
+    EXPECT_EQ(mesh_.n_faces()-1, mesh_.faces().size());
+}
+
 
 /* Test if Property Manager can be used in smart ranges
  */
