@@ -85,7 +85,7 @@ struct SmartRangeT
    *  @param f Functor that is applied to all elements before computing the sum
    */
   template <typename Functor>
-  auto sum(Functor&& f) -> typename std::decay<decltype (f(std::declval<HandleT>()))>::type
+  auto sum(Functor&& f) const -> typename std::decay<decltype (f(std::declval<HandleT>()))>::type
   {
     auto range = static_cast<const RangeT*>(this);
     auto begin = range->begin();
@@ -106,7 +106,7 @@ struct SmartRangeT
    *  @param f Functor that is applied to all elements before computing the average.
    */
   template <typename Functor>
-  auto avg(Functor&& f) -> typename std::decay<decltype (f(std::declval<HandleT>()))>::type
+  auto avg(Functor&& f) const -> typename std::decay<decltype (f(std::declval<HandleT>()))>::type
   {
     auto range = static_cast<const RangeT*>(this);
     auto begin = range->begin();
@@ -132,7 +132,7 @@ struct SmartRangeT
    *  @param w Functor returning element weight.
    */
   template <typename Functor, typename WeightFunctor>
-  auto avg(Functor&& f, WeightFunctor&& w) -> typename std::decay<decltype ((1.0/(w(std::declval<HandleT>())+w(std::declval<HandleT>())))*f(std::declval<HandleT>()))>::type
+  auto avg(Functor&& f, WeightFunctor&& w) const -> typename std::decay<decltype ((1.0/(w(std::declval<HandleT>())+w(std::declval<HandleT>())))*f(std::declval<HandleT>()))>::type
   {
     auto range = static_cast<const RangeT*>(this);
     auto begin = range->begin();
@@ -160,7 +160,7 @@ struct SmartRangeT
   *  @param f Functor that is evaluated for all elements.
   */
   template <typename Functor>
-  auto any_of(Functor&& f) -> bool
+  auto any_of(Functor&& f) const -> bool
   {
     auto range = static_cast<const RangeT*>(this);
     for (auto e : *range)
@@ -177,7 +177,7 @@ struct SmartRangeT
   *  @param f Functor that is evaluated for all elements.
   */
   template <typename Functor>
-  auto all_of(Functor&& f) -> bool
+  auto all_of(Functor&& f) const -> bool
   {
     auto range = static_cast<const RangeT*>(this);
     for (auto e : *range)
@@ -196,7 +196,7 @@ struct SmartRangeT
   *           the array will contain the handles.
   */
   template <int n, typename Functor = Identity>
-  auto to_array(Functor&& f = {}) -> std::array<typename std::decay<decltype (f(std::declval<HandleT>()))>::type, n>
+  auto to_array(Functor&& f = {}) const -> std::array<typename std::decay<decltype (f(std::declval<HandleT>()))>::type, n>
   {
     auto range = static_cast<const RangeT*>(this);
     std::array<typename std::decay<decltype (f(std::declval<HandleT>()))>::type, n> res;
@@ -216,7 +216,7 @@ struct SmartRangeT
   *           the vector will contain the handles.
   */
   template <typename Functor = Identity>
-  auto to_vector(Functor&& f = {}) -> std::vector<typename std::decay<decltype (f(std::declval<HandleT>()))>::type>
+  auto to_vector(Functor&& f = {}) const -> std::vector<typename std::decay<decltype (f(std::declval<HandleT>()))>::type>
   {
     auto range = static_cast<const RangeT*>(this);
     std::vector<typename std::decay<decltype (f(std::declval<HandleT>()))>::type> res;
@@ -233,7 +233,7 @@ struct SmartRangeT
   *           the set will contain the handles.
   */
   template <typename Functor = Identity>
-  auto to_set(Functor&& f = {}) -> std::set<typename std::decay<decltype (f(std::declval<HandleT>()))>::type>
+  auto to_set(Functor&& f = {}) const -> std::set<typename std::decay<decltype (f(std::declval<HandleT>()))>::type>
   {
     auto range = static_cast<const RangeT*>(this);
     std::set<typename std::decay<decltype (f(std::declval<HandleT>()))>::type> res;
@@ -251,7 +251,7 @@ struct SmartRangeT
   *           the set will contain the handles.
   */
   template <typename Functor>
-  auto first(Functor&& f = {}) -> HandleT
+  auto first(Functor&& f = {}) const -> HandleT
   {
     auto range = static_cast<const RangeT*>(this);
     for (const auto& e : *range)
@@ -267,7 +267,7 @@ struct SmartRangeT
   *  @param f Functor that is applied to all elements before computing minimum.
   */
   template <typename Functor>
-  auto min(Functor&& f) -> typename std::decay<decltype (f(std::declval<HandleT>()))>::type
+  auto min(Functor&& f) const -> typename std::decay<decltype (f(std::declval<HandleT>()))>::type
   {
     using std::min;
 
@@ -292,7 +292,7 @@ struct SmartRangeT
   *  @param f Functor that is applied to all elements before comparing.
   */
   template <typename Functor>
-  auto argmin(Functor&& f) -> HandleT
+  auto argmin(Functor&& f) const -> HandleT
   {
     auto range = static_cast<const RangeT*>(this);
     auto it    = range->begin();
@@ -323,7 +323,7 @@ struct SmartRangeT
   *  @param f Functor that is applied to all elements before computing maximum.
   */
   template <typename Functor>
-  auto max(Functor&& f) -> typename std::decay<decltype (f(std::declval<HandleT>()))>::type
+  auto max(Functor&& f) const -> typename std::decay<decltype (f(std::declval<HandleT>()))>::type
   {
     using std::max;
 
@@ -349,7 +349,7 @@ struct SmartRangeT
   *  @param f Functor that is applied to all elements before comparing.
   */
   template <typename Functor>
-  auto argmax(Functor&& f) -> HandleT
+  auto argmax(Functor&& f) const -> HandleT
   {
     auto range = static_cast<const RangeT*>(this);
     auto it    = range->begin();
@@ -381,7 +381,7 @@ struct SmartRangeT
   *  @param f Functor that is applied to all elements before computing maximum.
   */
   template <typename Functor>
-  auto minmax(Functor&& f) -> std::pair<typename std::decay<decltype (f(std::declval<HandleT>()))>::type,
+  auto minmax(Functor&& f) const -> std::pair<typename std::decay<decltype (f(std::declval<HandleT>()))>::type,
                                         typename std::decay<decltype (f(std::declval<HandleT>()))>::type>
   {
     return std::make_pair(this->min(f), this->max(f));
@@ -395,7 +395,7 @@ struct SmartRangeT
   *  @param f Predicate that elements have to satisfy in order to be counted.
   */
   template <typename Functor>
-  auto count_if(Functor&& f) -> int
+  auto count_if(Functor&& f) const -> int
   {
     int count = 0;
     auto range = static_cast<const RangeT*>(this);
@@ -413,7 +413,7 @@ struct SmartRangeT
   *  @param f Functor that is called for each element.
   */
   template <typename Functor>
-  auto for_each(Functor&& f) -> void
+  auto for_each(Functor&& f) const -> void
   {
     auto range = static_cast<const RangeT*>(this);
     for (const auto& e : *range)
@@ -428,7 +428,7 @@ struct SmartRangeT
    * @param f Functor that needs to be evaluated to true if the element should not be skipped.
    */
   template <typename Functor>
-  auto filtered(Functor&& f) -> FilteredSmartRangeT<SmartRange, Handle, Functor>
+  auto filtered(Functor&& f) const -> FilteredSmartRangeT<SmartRange, Handle, Functor>
   {
     auto range = static_cast<const RangeT*>(this);
     return FilteredSmartRangeT<SmartRange, Handle, Functor>(std::forward<Functor>(f), (*range).begin(), (*range).end());
