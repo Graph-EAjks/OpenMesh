@@ -8,6 +8,12 @@
 #include <iostream>
 #include <chrono>
 
+
+#if defined(__has_include)
+#  if __has_include(<version>)
+#    include <version>
+#  endif
+#endif
 #ifdef __cpp_lib_ranges
 #  include <ranges>
 #endif
