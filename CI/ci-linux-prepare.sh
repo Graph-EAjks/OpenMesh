@@ -38,6 +38,14 @@ elif [ "$LANGUAGE" == "cpp17" ]; then
   echo "Building with C++17";
   OPTIONS="$OPTIONS -DCMAKE_CXX_FLAGS='-std=c++17' "
   BUILDPATH="$BUILDPATH-cpp17"
+elif [ "$LANGUAGE" == "cpp20" ]; then
+  echo "Building with C++20";
+  OPTIONS="$OPTIONS -DCMAKE_CXX_FLAGS='-std=c++20' "
+  BUILDPATH="$BUILDPATH-cpp20"
+elif [ "$LANGUAGE" == "cpp223" ]; then
+  echo "Building with C++23";
+  OPTIONS="$OPTIONS -DCMAKE_CXX_FLAGS='-std=c++23' "
+  BUILDPATH="$BUILDPATH-cpp23"
 fi  
 
 if [ "$QTVERSION" == "qt5.13.0" ]; then

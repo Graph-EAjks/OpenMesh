@@ -16,6 +16,9 @@ cppcheck:
 {linux-template-job.yml, COMPILER=gcc, LANGUAGE=cpp17, QT_VERSION=qt6.7.1}
 {linux-template-job.yml, COMPILER=clang, LANGUAGE=cpp17, QT_VERSION=qt6.7.1}
 
+{linux-template-job.yml, COMPILER=gcc, LANGUAGE=cpp20, QT_VERSION=qt6.7.1}
+{linux-template-job.yml, COMPILER=clang, LANGUAGE=cpp20, QT_VERSION=qt6.7.1}
+
 {linux-template-job.yml, COMPILER=gcc, LANGUAGE=cpp14, QT_VERSION=qt6.7.1}
 {linux-template-job.yml, COMPILER=clang, LANGUAGE=cpp14, QT_VERSION=qt6.7.1}
 
