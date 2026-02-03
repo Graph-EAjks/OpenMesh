@@ -8,13 +8,16 @@ cppcheck:
   image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
   tags:
     - Linux
-  timeout: 3h
+  timeout: 6h
   artifacts:
     paths:
       - cppcheck.log
 
 {linux-template-job.yml, COMPILER=gcc, LANGUAGE=cpp17, QT_VERSION=qt6.7.1}
 {linux-template-job.yml, COMPILER=clang, LANGUAGE=cpp17, QT_VERSION=qt6.7.1}
+
+{linux-template-job.yml, COMPILER=gcc, LANGUAGE=cpp20, QT_VERSION=qt6.7.1}
+{linux-template-job.yml, COMPILER=clang, LANGUAGE=cpp20, QT_VERSION=qt6.7.1}
 
 {linux-template-job.yml, COMPILER=gcc, LANGUAGE=cpp14, QT_VERSION=qt6.7.1}
 {linux-template-job.yml, COMPILER=clang, LANGUAGE=cpp14, QT_VERSION=qt6.7.1}
