@@ -28,7 +28,7 @@ cppcheck:
   image: gitlab.vci.rwth-aachen.de:4567/docker/docker/docker-openmesh-container
   tags:
     - Linux
-  timeout: 3h
+  timeout: 6h
   artifacts:
     paths:
       - cppcheck.log
