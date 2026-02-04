@@ -8,6 +8,16 @@
 #include <iostream>
 #include <chrono>
 
+
+#if defined(__has_include)
+#  if __has_include(<version>)
+#    include <version>
+#  endif
+#endif
+#ifdef __cpp_lib_ranges
+#  include <ranges>
+#endif
+
 namespace {
 
 class OpenMeshSmartRanges : public OpenMeshBase {
@@ -193,6 +203,47 @@ TEST_F(OpenMeshSmartRanges, Sum)
     EXPECT_EQ(fh.faces().sum(F<OpenMesh::FaceHandle>()), 3u);
 }
 
+TEST_F(OpenMeshSmartRanges, Size)
+{
+    EXPECT_EQ(mesh_.n_faces(), mesh_.faces().size());
+    mesh_.request_face_status(); // required for soft deletion
+    mesh_.delete_face(*mesh_.faces_begin());
+    EXPECT_EQ(mesh_.n_faces()-1, mesh_.faces().size());
+}
+
+#ifdef __cpp_lib_ranges
+TEST_F(OpenMeshSmartRanges, StdRanges)
+{
+  mesh_.request_vertex_status();
+  mesh_.request_edge_status();
+  mesh_.request_face_status();
+  mesh_.delete_face(OpenMesh::FaceHandle(0)); // ensure there is a boundary
+  mesh_.garbage_collection();
+
+  auto vpos_range = mesh_.vertices() | std::views::transform( [&](auto vh){return mesh_.point(vh);});
+  auto vpos_vec = std::vector(vpos_range.begin(), vpos_range.end());
+  EXPECT_EQ(vpos_vec.size(), mesh_.n_vertices());
+  EXPECT_EQ(vpos_vec[0], mesh_.point(OpenMesh::VertexHandle(0)));
+  EXPECT_NE(vpos_vec[1], mesh_.point(OpenMesh::VertexHandle(0)));
+
+  static_assert(std::ranges::input_range<decltype(mesh_.edges())>);
+
+  auto bnd_edges = std::views::filter( mesh_.edges(), [](OpenMesh::SmartEdgeHandle h){return h.is_boundary();});
+  EXPECT_EQ(std::ranges::distance(bnd_edges), 3);
+
+  auto bnd_edges2 = mesh_.edges() | std::views::filter(OpenMesh::Predicates::Boundary());
+  EXPECT_EQ(std::ranges::distance(bnd_edges2), 3);
+
+  auto fh = mesh_.make_smart(mesh_.face_handle(1));
+  auto f_bnds = fh.halfedges() | std::views::filter([](auto h) {return h.opp().is_boundary();});
+  ASSERT_EQ(std::ranges::distance(f_bnds), 1);
+  EXPECT_EQ(f_bnds.begin()->idx(), 3);
+}
+#else
+TEST_F(OpenMeshSmartRanges, DISABLED_StdRanges)
+{
+}
+#endif
 
 /* Test if Property Manager can be used in smart ranges
  */
