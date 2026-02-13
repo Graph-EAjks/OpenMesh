@@ -710,7 +710,7 @@ makeTemporaryProperty(PolyConnectivity &mesh, const char *propname) {
  */
 template<typename ElementT, typename T>
 PropertyManager<typename HandleToPropHandle<ElementT, T>::type>
-makeTemporaryProperty(PolyConnectivity &mesh) {
+makeTemporaryProperty(const PolyConnectivity &mesh) {
     return PropertyManager<typename HandleToPropHandle<ElementT, T>::type>(mesh);
 }
 
