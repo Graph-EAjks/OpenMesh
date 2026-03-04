@@ -557,6 +557,10 @@ HoleFillerT< MeshT >::fill( int _i, int _j )
   if ( _i + 1 == _j )
     return true;
     
+  // If the middle vertex is invalid, this hole cannot be filled
+
+  if(l_[_i][_j] < 0)
+    return false;
 
   // Create and store the middle triangle, store its edges.
     
