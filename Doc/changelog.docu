@@ -19,6 +19,11 @@
 <li>Some minor cleanups to avoid warnings.</li>
 </ul>
 
+<b>Tools</b>
+<ul>
+<li>HoleFiller: Fix crash in specific unfillable holes (Thanks to M. Wechner for the patch) </li>
+</ul>
+
 <b>Build System</b>
 <ul>
 <li>Fixed missing header files on IOS and Mac installs. (Thanks to J.Tressler for the fix)</li>
